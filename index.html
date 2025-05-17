@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Christopher van der Merwe Portfolio</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header>
+    <h1>Christopher van der Merwe</h1>
+    <p>Website Design • Full stack • Game dev</p>
+  </header>
+
+  <nav>
+    <a href="#about">About</a>
+    <a href="#projects">Projects</a>
+    <a href="#contact">Contact</a>
+  </nav>
+
+  <section id="about">
+    <h2>About Me</h2>
+    <p>Welcome to my portfolio! I’m a passionate developer focused on building <br> responsive websites, experimenting with design, and game development.</p>
+  </section>
+
+  <section id="projects">
+    <h2>Projects</h2>
+    <div class="project-grid">
+      <div class="project-card">
+        <h3>Project One</h3>
+        <p>A short description of your project goes here.</p>
+        <a href="#">View Project</a>
+      </div>
+      <div class="project-card">
+        <h3>Project Two</h3>
+        <p>Another cool project you’ve worked on.</p>
+        <a href="#">View Project</a>
+      </div>
+      <!-- Add more projects as needed -->
+    </div>
+  </section>
+
+  <section id="contact">
+    <h2>Contact</h2>
+    <p>Email: chrisvdm@yahoo.com</p>
+    </section>
+
+  <footer>
+    <p>© 2025 Christopher van der Merwe. All rights reserved.</p>
+  </footer>
+  <script>
+  const backgrounds = [
+    'images/designer.jpeg',
+    'images/nature.jpeg',
+    'images/table.jpeg',
+    'images/wave.jpeg'
+  ];
+
+  const randomImage = backgrounds[Math.floor(Math.random() * backgrounds.length)];
+  document.body.style.backgroundImage = `url('${randomImage}')`;
+</script>
+
+</body>
+</html>
