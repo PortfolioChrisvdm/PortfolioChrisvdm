@@ -11,7 +11,7 @@ body {
   background-repeat: no-repeat;        /* avoids tiling */
   background-position: center center;  /* keeps the image centered */
   background-attachment: fixed;        /* makes background stay while scrolling */
-  color: #f4f4f4;                      /* light text for readability */
+  color: #00e5ff;                      /* light text for readability */
   font-family: Arial, sans-serif;
   min-height: 100vh;
   margin: 0;
