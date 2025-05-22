@@ -29,7 +29,7 @@ h1, h2, h3 {
 /* Hero Section (Full viewport banner) */
 /* =============================== */
 .hero {
-  background: url('/images/herobackgound.jpg') no-repeat center center/cover; /* Background image scaled to cover */
+  background: url('https://portfoliochrisvdm.github.io/PortfolioChrisvdm/Projects/Evogenics/images/herobackgound.jpg') no-repeat center center/cover; /* Background image scaled to cover */
   min-height: 100vh; /* Full height of viewport */
   
   align-items: flex-start; /* Center content vertically */
@@ -89,7 +89,7 @@ h1, h2, h3 {
 /* Mission Section */
 /* =============================== */
 .mission {
-   background: url('/images/hands.jpg') no-repeat center center/cover;
+   background: url('https://portfoliochrisvdm.github.io/PortfolioChrisvdm/Projects/Evogenics/images/hands.jpg') no-repeat center center/cover;
   padding: 4em 2em; /* Vertical and horizontal spacing */
   background-color: #111322; /* Slightly lighter than body bg */
 }
@@ -143,7 +143,7 @@ h1, h2, h3 {
 /* Team Section */
 /* =============================== */
 .team {
-  background: url('/images/city.jpg') no-repeat center center/cover;
+  background: url('https://portfoliochrisvdm.github.io/PortfolioChrisvdm/Projects/Evogenics/images/city.jpg') no-repeat center center/cover;
   padding: 4em 2em;
   background-color: #111322;
   text-align: center;
