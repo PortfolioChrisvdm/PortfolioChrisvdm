@@ -39,13 +39,14 @@ header {
 
 header h1 {
   font-size: 3rem;
-  color: #00e5ff;
-  background-image:url('images/nature.jpg');
+  color: #333;
+  
+  
 }
 
 header p {
   font-size: 1.2rem;
-  color: #00e5ff;
+  color: #333;
 }
 
 nav {
