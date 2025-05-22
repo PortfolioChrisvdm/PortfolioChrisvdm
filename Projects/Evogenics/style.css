@@ -1,0 +1,219 @@
+/* =============================== */
+/* Base Styles - overall page setup */
+/* =============================== */
+body {
+  margin: 0; /* Remove default browser margin */
+  font-family: 'Roboto', sans-serif; /* Default text font */
+  background-color: #0d0f1a; /* Dark background for sci-fi aesthetic */
+  color: #e0f7fa; /* Light text for readability */
+  line-height: 1.6; /* Comfortable line spacing */
+  text-align: center; /* Center all text by default */
+}
+
+/* Heading fonts and spacing */
+h1, h2, h3 {
+  font-family: 'Orbitron', sans-serif; /* Futuristic heading font */
+  color: #00e5ff; /* Neon blue headings */
+  margin-bottom: 0.5em; /* Spacing below headings */
+}
+
+.text-bg {
+  background-color: rgba(0, 0, 0, 0.6); /* Black with 60% opacity */
+  padding: 1em;
+  border-radius: 8px;
+  display: inline-block;
+  max-width: 90%;
+}
+
+/* =============================== */
+/* Hero Section (Full viewport banner) */
+/* =============================== */
+.hero {
+  background: url('/images/herobackgound.jpg') no-repeat center center/cover; /* Background image scaled to cover */
+  min-height: 100vh; /* Full height of viewport */
+  
+  align-items: flex-start; /* Center content vertically */
+  justify-content: center; /* Center content horizontally */
+  text-align: center;
+  flex-direction: column; /* Stack logo, heading, button */
+  text-align: center;
+  padding-top: 30px;            /* Push content down from top */
+  padding-left: 2em;
+  padding-right: 2em;
+  padding-bottom: 2em;
+}
+.hero-content {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* ← Center children horizontally */
+  margin-top: 30px;    /* ← Push down from top */
+}
+.hero-description {
+  max-width: 100%;
+  margin: 2em auto 0; /* Space above and center-align */
+  color: #21dbf3;      /* Softer neon text */
+  font-size: 1.1em;
+  line-height: 1.8;
+}
+
+
+
+/* Logo image in hero */
+.logo {
+  max-width: 100%; /* Prevent logo from being too large */
+  margin: 0 auto 1em; /* Center and add space below */
+  display: block;
+}
+
+/* Call to action button */
+.cta-button {
+  margin-top: 1em; /* Space above button */
+  background-color: #00e5ff; /* Cyan background */
+  color: #0d0f1a; /* Dark text for contrast */
+  padding: 0.75em 1.5em; /* Button sizing */
+  border: none;
+  font-weight: bold;
+  border-radius: 4px; /* Rounded corners */
+  text-decoration: none;
+  transition: background 0.3s; /* Smooth hover transition */
+  display: inline-block;
+}
+
+.cta-button:hover {
+  background-color: #00bcd4; /* Darker cyan on hover */
+}
+
+
+/* =============================== */
+/* Mission Section */
+/* =============================== */
+.mission {
+   background: url('/images/hands.jpg') no-repeat center center/cover;
+  padding: 4em 2em; /* Vertical and horizontal spacing */
+  background-color: #111322; /* Slightly lighter than body bg */
+}
+
+.mission p {
+  max-width: 100%; /* Restrict line width */
+  margin: 0 auto; /* Center horizontally */
+}
+
+
+/* =============================== */
+/* Products Section */
+/* =============================== */
+.products {
+  padding: 4em 2em;
+  background-color: #0d0f1a;
+  text-align: center;
+}
+
+/* Flexbox container for product cards */
+.product-grid {
+  display: flex;
+  flex-wrap: wrap; /* Allow wrapping to new lines */
+  justify-content: center; /* Center all cards */
+  gap: 2em; /* Space between cards */
+  margin-top: 2em;
+  max-width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Individual product card */
+.product {
+  background-color: #111322; /* Card background */
+  padding: 1em; /* Inner spacing */
+  border-radius: 8px; /* Rounded corners */
+  flex: 0 1 300px; /* Fixed width, flexible layout */
+  box-shadow: 0 0 10px rgba(0, 229, 255, 0.2); /* Neon glow shadow */
+}
+
+.product img {
+  width: 100%; /* Fill card width */
+  height: auto;
+  display: block;
+  margin: 0 auto;
+  border-radius: 4px;
+}
+
+
+/* =============================== */
+/* Team Section */
+/* =============================== */
+.team {
+  background: url('/images/city.jpg') no-repeat center center/cover;
+  padding: 4em 2em;
+  background-color: #111322;
+  text-align: center;
+}
+
+/* Flexbox container for team cards */
+.team-grid {
+  display: inline-flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 2em;
+  margin-top: 2em;
+  max-width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Team member card */
+.team-member {
+  background-color: #0d0f1a;
+  padding: 1.5em;
+  border-radius: 8px;
+  flex: 0 1 300px;
+  box-shadow: 0 0 10px rgba(0, 229, 255, 0.15); /* Lighter glow */
+  flex-shrink: 1;
+}
+
+.team-member img {
+  width: 100%;
+  height: auto;
+  display: block;
+  margin: 0 auto;
+  border-radius: 4px;
+}
+
+.team-member blockquote {
+  font-style: italic;
+  margin-top: 0.5em;
+  color: #b2ebf2;
+}
+
+
+/* =============================== */
+/* Footer */
+/* =============================== */
+footer {
+  background-color: #0d0f1a;
+  text-align: center;
+  padding: 2em;
+  font-size: 0.9em;
+  color: #80deea;
+}
+
+
+/* =============================== */
+/* Responsive Tweaks for Small Screens */
+/* =============================== */
+@media (max-width: 768px) {
+  .hero {
+    padding: 1em; /* Reduce padding on smaller screens */
+  }
+
+  .product-grid,
+  .team-grid {
+    flex-direction: column; /* Stack vertically */
+    align-items: center;
+  }
+
+  .product,
+  .team-member {
+    max-width: 90%; /* Use most of screen width */
+  }
+}
