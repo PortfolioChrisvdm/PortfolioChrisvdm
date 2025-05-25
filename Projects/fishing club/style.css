@@ -45,7 +45,7 @@ nav ul li a {
 .hero {
   width: 100%;
   min-height: 60vh; /* Makes it more impactful */
-  background: url('/images/earlymorning.jpg') no-repeat center center/cover;
+  background: url('https://portfoliochrisvdm.github.io/portfoliochrisvdm/Projects/fishing club/images/earlymorning.jpg') no-repeat center center/cover;
   color: white;
   display: flex;
   align-items: center;
