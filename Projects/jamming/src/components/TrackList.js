@@ -1,4 +1,3 @@
-// src/components/TrackList.js
 import React from 'react';
 import Track from './Track';
 

@@ -1,12 +1,13 @@
-const clientId = 'eee42f6c6bae4755af12326059bf707c'; // Your Client ID
-const redirectUri = 'http://127.0.0.1:3000/';       // Your redirect URI
+const clientId = 'eee42f6c6bae4755af12326059bf707c';
+const redirectUri = 'http://127.0.0.1:3000/';
 const scopes = [
   'playlist-modify-public',
   'playlist-modify-private',
-  'user-read-private',  // Needed for /me endpoint
+  'user-read-private',
 ];
 
 let accessToken = '';
+let tokenExpiresAt = 0;
 
 function base64urlencode(str) {
   return btoa(String.fromCharCode(...new Uint8Array(str)))
@@ -32,10 +33,26 @@ async function generateCodeChallenge(verifier) {
   return base64urlencode(digest);
 }
 
+function getStoredState() {
+  try {
+    const term = sessionStorage.getItem('searchTerm') || '';
+    const results = JSON.parse(sessionStorage.getItem('searchResults') || '[]');
+    const playlistName = sessionStorage.getItem('playlistName') || 'New Playlist';
+    const playlistTracks = JSON.parse(sessionStorage.getItem('playlistTracks') || '[]');
+    return { term, results, playlistName, playlistTracks };
+  } catch (e) {
+    console.warn('[Spotify] Failed to restore state from sessionStorage', e);
+    return {};
+  }
+}
+
 export const Spotify = {
+  restoreState: getStoredState,
+
   async getAccessToken() {
-    if (accessToken) {
-      console.log('[Spotify] Returning cached access token');
+    const now = Date.now();
+    if (accessToken && tokenExpiresAt && now < tokenExpiresAt) {
+      console.log('[Spotify] Returning valid cached token');
       return accessToken;
     }
 
@@ -43,159 +60,121 @@ export const Spotify = {
     const code = params.get('code');
 
     if (!code) {
-      try {
-        const codeVerifier = generateCodeVerifier();
-        localStorage.setItem('spotify_code_verifier', codeVerifier);
-        const codeChallenge = await generateCodeChallenge(codeVerifier);
+      const codeVerifier = generateCodeVerifier();
+      localStorage.setItem('spotify_code_verifier', codeVerifier);
+      const codeChallenge = await generateCodeChallenge(codeVerifier);
 
-        const authUrl =
-          `https://accounts.spotify.com/authorize?` +
-          `client_id=${clientId}` +
-          `&response_type=code` +
-          `&redirect_uri=${encodeURIComponent(redirectUri)}` +
-          `&scope=${encodeURIComponent(scopes.join(' '))}` +
-          `&code_challenge_method=S256` +
-          `&code_challenge=${codeChallenge}`;
+      const authUrl =
+        `https://accounts.spotify.com/authorize?` +
+        `client_id=${clientId}` +
+        `&response_type=code` +
+        `&redirect_uri=${encodeURIComponent(redirectUri)}` +
+        `&scope=${encodeURIComponent(scopes.join(' '))}` +
+        `&code_challenge_method=S256` +
+        `&code_challenge=${codeChallenge}`;
 
-        console.log('[Spotify] Redirecting to authorization URL');
-        window.location = authUrl;
-        return null;
-      } catch (err) {
-        console.error('[Spotify] Error generating PKCE code challenge:', err);
-        throw err;
-      }
+      sessionStorage.setItem('searchTerm', params.get('term') || '');
+      sessionStorage.setItem('searchResults', sessionStorage.getItem('searchResults') || '[]');
+      sessionStorage.setItem('playlistName', sessionStorage.getItem('playlistName') || 'New Playlist');
+      sessionStorage.setItem('playlistTracks', sessionStorage.getItem('playlistTracks') || '[]');
+
+      console.log('[Spotify] Redirecting to Spotify auth');
+      window.location = authUrl;
+      return null;
     }
 
     const storedVerifier = localStorage.getItem('spotify_code_verifier');
-    if (!storedVerifier) {
-      const errMsg = '[Spotify] PKCE code_verifier missing from localStorage';
-      console.error(errMsg);
-      throw new Error(errMsg);
+    if (!storedVerifier) throw new Error('PKCE verifier not found');
+
+    const tokenResponse = await fetch('https://accounts.spotify.com/api/token', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+      body: new URLSearchParams({
+        grant_type: 'authorization_code',
+        code,
+        redirect_uri: redirectUri,
+        client_id: clientId,
+        code_verifier: storedVerifier,
+      }),
+    });
+
+    const json = await tokenResponse.json();
+    if (!tokenResponse.ok) {
+      console.error('[Spotify] Token exchange failed:', json);
+      throw new Error(json.error_description);
     }
 
-    try {
-      console.log('[Spotify] Exchanging code for token with code_verifier:', storedVerifier);
+    accessToken = json.access_token;
+    tokenExpiresAt = Date.now() + json.expires_in * 1000;
+    localStorage.removeItem('spotify_code_verifier');
+    window.history.replaceState({}, document.title, '/');
 
-      const tokenResponse = await fetch('https://accounts.spotify.com/api/token', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-        body: new URLSearchParams({
-          grant_type: 'authorization_code',
-          code,
-          redirect_uri: redirectUri,
-          client_id: clientId,
-          code_verifier: storedVerifier,
-        }),
-      });
-
-      const json = await tokenResponse.json();
-
-      if (!tokenResponse.ok) {
-        console.error('[Spotify] Token exchange failed:', json);
-        throw new Error(`Token exchange error: ${json.error} – ${json.error_description}`);
-      }
-
-      accessToken = json.access_token;
-      localStorage.removeItem('spotify_code_verifier');
-      window.history.replaceState({}, document.title, '/');
-
-      console.log('[Spotify] Access token acquired');
-      return accessToken;
-    } catch (err) {
-      console.error('[Spotify] Failed to get access token:', err);
-      throw err;
-    }
+    return accessToken;
   },
 
   async search(term) {
-    try {
-      const token = await this.getAccessToken();
-      if (!token) throw new Error('No access token');
+    const token = await this.getAccessToken();
+    if (!token) throw new Error('No access token');
 
-      console.log(`[Spotify] Searching for term: "${term}"`);
+    console.log('[Spotify] Searching for:', term);
 
-      const response = await fetch(
-        `https://api.spotify.com/v1/search?type=track&q=${encodeURIComponent(term)}`,
-        { headers: { Authorization: `Bearer ${token}` } }
-      );
+    const response = await fetch(
+      `https://api.spotify.com/v1/search?type=track&q=${encodeURIComponent(term)}`,
+      { headers: { Authorization: `Bearer ${token}` } }
+    );
 
-      if (!response.ok) {
-        const text = await response.text();
-        console.error(`[Spotify] Search API error (status ${response.status}):`, text);
-        throw new Error(`Spotify search API error: ${response.status}`);
-      }
-
-      const json = await response.json();
-      return json.tracks?.items.map(track => ({
-        id: track.id,
-        name: track.name,
-        artist: track.artists[0].name,
-        album: track.album.name,
-        uri: track.uri,
-      })) || [];
-    } catch (err) {
-      console.error('[Spotify] Search failed:', err);
-      throw err;
+    if (!response.ok) {
+      const text = await response.text();
+      console.error(`[Spotify] Search error (${response.status}):`, text);
+      throw new Error(`Spotify search error: ${response.status}`);
     }
+
+    const json = await response.json();
+    const items = json.tracks?.items || [];
+    sessionStorage.setItem('searchTerm', term);
+    sessionStorage.setItem('searchResults', JSON.stringify(items));
+
+    return items.map(track => ({
+      id: track.id,
+      name: track.name,
+      artist: track.artists[0].name,
+      album: track.album.name,
+      uri: track.uri,
+      preview: track.preview_url, // Feature: preview samples
+    }));
   },
 
   async savePlaylist(name, uris) {
-    if (!name || uris.length === 0) {
-      console.warn('[Spotify] savePlaylist called with empty name or uris');
-      return;
-    }
+    if (!name || uris.length === 0) return;
 
-    try {
-      const token = await this.getAccessToken();
-      if (!token) throw new Error('No access token');
+    const token = await this.getAccessToken();
+    const headers = {
+      Authorization: `Bearer ${token}`,
+      'Content-Type': 'application/json',
+    };
 
-      const headers = { Authorization: `Bearer ${token}`, 'Content-Type': 'application/json' };
+    const userResponse = await fetch('https://api.spotify.com/v1/me', { headers });
+    const user = await userResponse.json();
 
-      console.log('[Spotify] Fetching current user profile');
-      const userResponse = await fetch('https://api.spotify.com/v1/me', { headers });
+    const playlistResponse = await fetch(`https://api.spotify.com/v1/users/${user.id}/playlists`, {
+      method: 'POST',
+      headers,
+      body: JSON.stringify({ name }),
+    });
 
-      if (!userResponse.ok) {
-        const text = await userResponse.text();
-        console.error(`[Spotify] Get user profile error (status ${userResponse.status}):`, text);
-        throw new Error(`Spotify get user profile error: ${userResponse.status}`);
-      }
+    const playlist = await playlistResponse.json();
 
-      const userJson = await userResponse.json();
-      const userId = userJson.id;
+    await fetch(`https://api.spotify.com/v1/playlists/${playlist.id}/tracks`, {
+      method: 'POST',
+      headers,
+      body: JSON.stringify({ uris }),
+    });
 
-      console.log(`[Spotify] Creating playlist "${name}" for user ${userId}`);
-      const createPlaylistResponse = await fetch(`https://api.spotify.com/v1/users/${userId}/playlists`, {
-        method: 'POST',
-        headers,
-        body: JSON.stringify({ name }),
-      });
+    sessionStorage.removeItem('playlistName');
+    sessionStorage.removeItem('playlistTracks');
+    sessionStorage.removeItem('searchResults');
+    sessionStorage.removeItem('searchTerm');
 
-      if (!createPlaylistResponse.ok) {
-        const text = await createPlaylistResponse.text();
-        console.error(`[Spotify] Create playlist error (status ${createPlaylistResponse.status}):`, text);
-        throw new Error(`Spotify create playlist error: ${createPlaylistResponse.status}`);
-      }
-
-      const playlistJson = await createPlaylistResponse.json();
-      const playlistId = playlistJson.id;
-
-      console.log(`[Spotify] Adding tracks to playlist ${playlistId}`);
-      const addTracksResponse = await fetch(`https://api.spotify.com/v1/playlists/${playlistId}/tracks`, {
-        method: 'POST',
-        headers,
-        body: JSON.stringify({ uris }),
-      });
-
-      if (!addTracksResponse.ok) {
-        const text = await addTracksResponse.text();
-        console.error(`[Spotify] Add tracks error (status ${addTracksResponse.status}):`, text);
-        throw new Error(`Spotify add tracks error: ${addTracksResponse.status}`);
-      }
-
-      console.log(`[Spotify] Playlist "${name}" saved successfully.`);
-    } catch (err) {
-      console.error('[Spotify] savePlaylist failed:', err);
-      throw err;
-    }
+    return true;
   },
 };
