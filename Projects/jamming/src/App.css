@@ -138,3 +138,22 @@ h1 {
 .SaveButton:hover {
   background: #1ed760;
 }
+
+.Track-controls {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.PreviewButton {
+  background: #1db954;
+  color: white;
+  border: none;
+  padding: 8px 10px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.PreviewButton:hover {
+  opacity: 0.85;
+}
