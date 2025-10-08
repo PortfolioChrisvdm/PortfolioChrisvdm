@@ -1,0 +1,13 @@
+
+{
+"brand": "Holbank River Lodge",
+"nav": {"home":"Home","weddings":"Weddings","guesthouse":"Guesthouse","hunting":"Hunting Safaris","fishing":"Fishing & Nature","contact":"Contact"},
+"hero": {"title":"A timeless riverside lodge for weddings, adventures and rest.", "ctaPrimary":"Book a Viewing", "ctaSecondary":"Explore Weddings"},
+"footer": {"rights":"All rights reserved."},
+"sections": {
+"weddingsTitle":"Weddings",
+"guesthouseTitle":"Guesthouse",
+"huntingTitle":"Hunting Safaris",
+"fishingTitle":"Fishing & Lakes"
+}
+}

@@ -1,0 +1,13 @@
+
+{
+"brand": "Holbank River Lodge",
+"nav": {"home":"Startseite","weddings":"Hochzeiten","guesthouse":"Gästehaus","hunting":"Jagd-Safaris","fishing":"Angeln & Natur","contact":"Kontakt"},
+"hero": {"title":"Eine zeitlose Lodge am Fluss für Hochzeiten, Abenteuer und Erholung.", "ctaPrimary":"Besichtigung buchen", "ctaSecondary":"Hochzeiten entdecken"},
+"footer": {"rights":"Alle Rechte vorbehalten."},
+"sections": {
+"weddingsTitle":"Hochzeiten",
+"guesthouseTitle":"Gästehaus",
+"huntingTitle":"Jagd-Safaris",
+"fishingTitle":"Angeln & Seen"
+}
+}

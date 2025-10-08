@@ -1,0 +1,13 @@
+
+{
+"brand": "Holbank River Lodge",
+"nav": {"home":"Главная","weddings":"Свадьбы","guesthouse":"Гостевой дом","hunting":"Охотничьи сафари","fishing":"Рыбалка и природа","contact":"Контакты"},
+"hero": {"title":"Вневременная лоджия у реки для свадеб, приключений и отдыха.", "ctaPrimary":"Записаться на просмотр", "ctaSecondary":"Подробнее о свадьбах"},
+"footer": {"rights":"Все права защищены."},
+"sections": {
+"weddingsTitle":"Свадьбы",
+"guesthouseTitle":"Гостевой дом",
+"huntingTitle":"Охотничьи сафари",
+"fishingTitle":"Рыбалка и озёра"
+}
+}
