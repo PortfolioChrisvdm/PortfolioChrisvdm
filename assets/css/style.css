@@ -1,0 +1,566 @@
+/* ==========================================
+   Christopher van der Merwe Portfolio v2
+   Design System
+========================================== */
+
+/* Google Font */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+/* ---------- Variables ---------- */
+
+:root{
+
+    --background:#0b1120;
+    --surface:#111827;
+    --surface-light:#1f2937;
+
+    --primary:#2563eb;
+    --primary-light:#3b82f6;
+
+    --accent:#38bdf8;
+
+    --text:#f8fafc;
+    --text-light:#cbd5e1;
+
+    --border:#243244;
+
+    --shadow:0 20px 40px rgba(0,0,0,.35);
+
+    --radius:18px;
+
+    --transition:.35s ease;
+
+    --max-width:1250px;
+
+}
+
+/* ---------- Reset ---------- */
+
+*{
+
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+
+}
+
+html{
+
+    scroll-behavior:smooth;
+
+}
+
+body{
+
+    font-family:'Inter',sans-serif;
+
+    background:var(--background);
+
+    color:var(--text);
+
+    line-height:1.7;
+
+}
+
+/* ---------- Typography ---------- */
+
+h1{
+
+    font-size:4rem;
+    font-weight:700;
+
+}
+
+h2{
+
+    font-size:2.4rem;
+    margin-bottom:20px;
+
+}
+
+h3{
+
+    font-size:1.3rem;
+
+}
+
+p{
+
+    color:var(--text-light);
+
+}
+
+.section-label{
+
+    color:var(--accent);
+
+    text-transform:uppercase;
+
+    font-size:.8rem;
+
+    letter-spacing:2px;
+
+    margin-bottom:15px;
+
+}
+
+/* ---------- Layout ---------- */
+
+.section{
+
+    max-width:var(--max-width);
+
+    margin:auto;
+
+    padding:120px 30px;
+
+}
+
+.content-section{
+
+    max-width:900px;
+
+}
+
+/* ---------- Navigation ---------- */
+
+.site-header{
+
+    position:fixed;
+
+    top:0;
+
+    width:100%;
+
+    background:rgba(11,17,32,.88);
+
+    backdrop-filter:blur(14px);
+
+    border-bottom:1px solid var(--border);
+
+    z-index:1000;
+
+}
+
+.navbar{
+
+    max-width:var(--max-width);
+
+    margin:auto;
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    padding:20px 30px;
+
+}
+
+.logo{
+
+    color:white;
+
+    text-decoration:none;
+
+    font-weight:700;
+
+    font-size:1.3rem;
+
+}
+
+.logo span{
+
+    color:var(--accent);
+
+}
+
+.nav-links{
+
+    display:flex;
+
+    list-style:none;
+
+    gap:35px;
+
+}
+
+.nav-links a{
+
+    color:var(--text-light);
+
+    text-decoration:none;
+
+    transition:var(--transition);
+
+}
+
+.nav-links a:hover{
+
+    color:white;
+
+}
+
+.menu-toggle{
+
+    display:none;
+
+}
+
+/* ---------- Hero ---------- */
+
+.hero{
+
+    min-height:100vh;
+
+    display:grid;
+
+    grid-template-columns:1.4fr .9fr;
+
+    align-items:center;
+
+    gap:70px;
+
+}
+
+.eyebrow{
+
+    color:var(--accent);
+
+    margin-bottom:20px;
+
+}
+
+.hero-text{
+
+    margin:30px 0;
+
+    font-size:1.15rem;
+
+    max-width:650px;
+
+}
+
+.hero-buttons{
+
+    display:flex;
+
+    gap:20px;
+
+    flex-wrap:wrap;
+
+}
+
+.btn{
+
+    padding:15px 28px;
+
+    border-radius:50px;
+
+    text-decoration:none;
+
+    transition:var(--transition);
+
+    font-weight:600;
+
+}
+
+.primary-btn{
+
+    background:var(--primary);
+
+    color:white;
+
+}
+
+.primary-btn:hover{
+
+    background:var(--primary-light);
+
+    transform:translateY(-3px);
+
+}
+
+.secondary-btn{
+
+    border:2px solid var(--primary);
+
+    color:white;
+
+}
+
+.secondary-btn:hover{
+
+    background:var(--primary);
+
+}
+
+/* ---------- Cards ---------- */
+
+.hero-card,
+.skill-card,
+.project-card,
+.stat-card{
+
+    background:var(--surface);
+
+    border:1px solid var(--border);
+
+    border-radius:var(--radius);
+
+    box-shadow:var(--shadow);
+
+    transition:var(--transition);
+
+}
+
+.hero-card{
+
+    padding:40px;
+
+}
+
+.hero-card ul{
+
+    margin-top:20px;
+
+}
+
+.hero-card li{
+
+    margin-bottom:18px;
+
+}
+
+.hero-card:hover,
+.skill-card:hover,
+.project-card:hover{
+
+    transform:translateY(-8px);
+
+}
+
+/* ---------- Stats ---------- */
+
+.stats{
+
+    display:grid;
+
+    grid-template-columns:repeat(4,1fr);
+
+    gap:25px;
+
+}
+
+.stat-card{
+
+    padding:40px;
+
+    text-align:center;
+
+}
+
+.stat-card span{
+
+    font-size:2rem;
+
+    font-weight:700;
+
+    color:var(--accent);
+
+}
+
+/* ---------- Skills ---------- */
+
+.skills-grid{
+
+    display:grid;
+
+    grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+
+    gap:25px;
+
+}
+
+.skill-card{
+
+    padding:35px;
+
+}
+
+/* ---------- Projects ---------- */
+
+.project-grid{
+
+    display:grid;
+
+    grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
+
+    gap:30px;
+
+}
+
+.project-card{
+
+    padding:35px;
+
+}
+
+.text-link{
+
+    display:inline-block;
+
+    margin-top:20px;
+
+    color:var(--accent);
+
+    text-decoration:none;
+
+}
+
+/* ---------- Articles ---------- */
+
+.article-list{
+
+    display:grid;
+
+    gap:25px;
+
+}
+
+.article-list article{
+
+    background:var(--surface);
+
+    padding:30px;
+
+    border-radius:var(--radius);
+
+    border:1px solid var(--border);
+
+}
+
+/* ---------- Contact ---------- */
+
+.contact-links{
+
+    display:flex;
+
+    gap:30px;
+
+    flex-wrap:wrap;
+
+    margin-top:35px;
+
+}
+
+.contact-links a{
+
+    color:var(--accent);
+
+    text-decoration:none;
+
+}
+
+/* ---------- Footer ---------- */
+
+.footer{
+
+    text-align:center;
+
+    padding:50px 20px;
+
+    border-top:1px solid var(--border);
+
+    color:var(--text-light);
+
+}
+
+/* ---------- Mobile ---------- */
+
+@media(max-width:900px){
+
+.hero{
+
+grid-template-columns:1fr;
+
+padding-top:120px;
+
+}
+
+.stats{
+
+grid-template-columns:repeat(2,1fr);
+
+}
+
+.nav-links{
+
+display:none;
+
+}
+
+.menu-toggle{
+
+display:block;
+
+background:none;
+
+border:none;
+
+font-size:2rem;
+
+color:white;
+
+cursor:pointer;
+
+}
+
+h1{
+
+font-size:2.8rem;
+
+}
+
+}
+
+@media(max-width:600px){
+
+.stats{
+
+grid-template-columns:1fr;
+
+}
+
+.section{
+
+padding:90px 20px;
+
+}
+
+.hero-buttons{
+
+flex-direction:column;
+
+}
+
+.btn{
+
+text-align:center;
+
+}
+
+.nav-links.active {
+  display: flex;
+  position: absolute;
+  top: 78px;
+  right: 30px;
+  left: 30px;
+  flex-direction: column;
+  background: var(--surface);
+  padding: 25px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+}
+}
