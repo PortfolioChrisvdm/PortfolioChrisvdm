@@ -1,0 +1,12 @@
+.page-hero {
+  padding-top: 90px;
+  padding-bottom: 50px;
+}
+
+.page-hero h1 {
+  max-width: 900px;
+  font-size: clamp(2.4rem, 5vw, 4.5rem);
+  line-height: 1.05;
+  letter-spacing: -0.06em;
+  margin-bottom: 24px;
+}
