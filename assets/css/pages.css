@@ -10,3 +10,72 @@
   letter-spacing: -0.06em;
   margin-bottom: 24px;
 }
+/* ABOUT PAGE */
+
+.about-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 30px;
+}
+
+.about-card {
+    padding: 40px;
+    border-radius: 26px;
+    background:
+        linear-gradient(180deg, rgba(255,255,255,.04), transparent),
+        var(--card);
+
+    border: 1px solid var(--card-border);
+}
+
+.about-card h2 {
+    margin-bottom: 24px;
+}
+
+.about-card p {
+    color: var(--muted);
+    margin-bottom: 20px;
+}
+
+.about-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.about-list li {
+    padding: 12px 0;
+    border-bottom: 1px solid rgba(255,255,255,.08);
+}
+
+.career-card {
+    text-align: center;
+    padding: 70px 40px;
+    border-radius: 28px;
+    background:
+        radial-gradient(circle at top,
+        rgba(56,189,248,.16),
+        transparent 28rem),
+        var(--card);
+
+    border: 1px solid var(--card-border);
+}
+
+.career-card h2 {
+    margin: 16px auto 24px;
+    max-width: 900px;
+}
+
+.career-card p {
+    color: var(--muted);
+    max-width: 720px;
+    margin: 0 auto 36px;
+}
+
+@media (max-width:900px){
+
+.about-grid{
+grid-template-columns:1fr;
+}
+
+}
