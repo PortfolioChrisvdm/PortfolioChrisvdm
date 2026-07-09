@@ -1,25 +1,52 @@
-const menuToggle = document.querySelector(".menu-toggle");
-const navLinks = document.querySelector(".nav-links");
+async function loadComponent(selector, filePath) {
+  const placeholder = document.querySelector(selector);
 
-if (menuToggle && navLinks) {
-  menuToggle.addEventListener("click", () => {
-    navLinks.classList.toggle("active");
-  });
+  if (!placeholder) return;
 
-  navLinks.querySelectorAll("a").forEach((link) => {
-    link.addEventListener("click", () => {
-      navLinks.classList.remove("active");
+  try {
+    const response = await fetch(filePath);
+
+    if (!response.ok) {
+      throw new Error(`Could not load ${filePath}`);
+    }
+
+    placeholder.innerHTML = await response.text();
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+function setupNavigation() {
+  const menuToggle = document.querySelector(".menu-toggle");
+  const navLinks = document.querySelector(".nav-links");
+
+  if (menuToggle && navLinks) {
+    menuToggle.addEventListener("click", () => {
+      navLinks.classList.toggle("active");
     });
+
+    navLinks.querySelectorAll("a").forEach((link) => {
+      link.addEventListener("click", () => {
+        navLinks.classList.remove("active");
+      });
+    });
+  }
+
+  const currentPage = window.location.pathname.split("/").pop() || "index.html";
+  const navItems = document.querySelectorAll(".nav-links a");
+
+  navItems.forEach((link) => {
+    if (link.getAttribute("href") === currentPage) {
+      link.classList.add("active-link");
+    }
   });
 }
 
-const currentPage = window.location.pathname.split("/").pop() || "index.html";
-const navItems = document.querySelectorAll(".nav-links a");
+async function initPage() {
+  await loadComponent("#header-placeholder", "assets/includes/header.html");
+  await loadComponent("#footer-placeholder", "assets/includes/footer.html");
 
-navItems.forEach((link) => {
-  const linkPage = link.getAttribute("href");
+  setupNavigation();
+}
 
-  if (linkPage === currentPage) {
-    link.classList.add("active-link");
-  }
-});
+initPage();

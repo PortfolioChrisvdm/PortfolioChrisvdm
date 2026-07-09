@@ -36,6 +36,18 @@
   font-weight: 700;
 }
 
+.skill-icon {
+  width: 54px;
+  height: 54px;
+  display: grid;
+  place-items: center;
+  margin-bottom: 18px;
+  border-radius: 16px;
+  background: rgba(56,189,248,.1);
+  border: 1px solid rgba(56,189,248,.22);
+  font-size: 1.7rem;
+}
+
 @media (max-width: 900px) {
   .skills-grid {
     grid-template-columns: 1fr;

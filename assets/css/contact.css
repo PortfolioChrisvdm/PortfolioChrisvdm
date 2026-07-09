@@ -28,3 +28,20 @@
   margin: 20px auto 0;
   color: var(--muted);
 }
+
+.icon-btn {
+  gap: 10px;
+}
+
+.icon-btn img {
+  width: 20px;
+  height: 20px;
+}
+
+.btn-primary.icon-btn {
+  color: #06111d;
+}
+
+.btn-secondary.icon-btn {
+  color: var(--text);
+}
