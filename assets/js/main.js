@@ -12,3 +12,14 @@ if (menuToggle && navLinks) {
     });
   });
 }
+
+const currentPage = window.location.pathname.split("/").pop() || "index.html";
+const navItems = document.querySelectorAll(".nav-links a");
+
+navItems.forEach((link) => {
+  const linkPage = link.getAttribute("href");
+
+  if (linkPage === currentPage) {
+    link.classList.add("active-link");
+  }
+});

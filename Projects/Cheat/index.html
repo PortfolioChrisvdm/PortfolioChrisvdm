@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>HTML & CSS Cheat Sheet</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <h1>HTML & CSS Cheat Sheet</h1>
+
+  <h2>HTML Structure & Metadata</h2>
+  <table>
+    <thead>
+      <tr><th>Tag</th><th>Example</th><th>Description</th></tr>
+    </thead>
+    <tbody>
+      <tr><td><code>&lt;!DOCTYPE html&gt;</code></td><td>–</td><td>Declares the document type. <span class="reminder">Must be first line!</span></td></tr>
+      <tr><td><code>&lt;html&gt;</code></td><td><code>&lt;html lang="en"&gt;</code></td><td>Root HTML element. Use <code>lang</code> for accessibility.</td></tr>
+      <tr><td><code>&lt;head&gt;</code></td><td>–</td><td>Metadata section (not visible on page).</td></tr>
+      <tr><td><code>&lt;meta charset="UTF-8"&gt;</code></td><td>–</td><td>Character encoding. <span class="reminder">Always include!</span></td></tr>
+      <tr><td><code>&lt;title&gt;</code></td><td><code>&lt;title&gt;My Page&lt;/title&gt;</code></td><td>Page title shown on browser tab.</td></tr>
+      <tr><td><code>&lt;link rel="stylesheet"&gt;</code></td><td><code>&lt;link href="style.css"&gt;</code></td><td>Links external CSS file.</td></tr>
+    </tbody>
+  </table>
+
+  <h2>HTML Content Tags</h2>
+  <table>
+    <thead>
+      <tr><th>Tag</th><th>Example</th><th>Description</th></tr>
+    </thead>
+    <tbody>
+      <tr><td><code>&lt;h1&gt; to &lt;h6&gt;</code></td><td><code>&lt;h1&gt;Heading&lt;/h1&gt;</code></td><td>Headings. Use one <code>&lt;h1&gt;</code> per page.</td></tr>
+      <tr><td><code>&lt;p&gt;</code></td><td><code>&lt;p&gt;Text&lt;/p&gt;</code></td><td>Paragraph text.</td></tr>
+      <tr><td><code>&lt;a href=""&gt;</code></td><td><code>&lt;a href="url"&gt;Link&lt;/a&gt;</code></td><td>Creates a hyperlink.</td></tr>
+      <tr><td><code>&lt;img src="" alt=""&gt;</code></td><td><code>&lt;img src="img.jpg" alt="desc"&gt;</code></td><td>Embeds an image. <span class="reminder">Always use alt!</span></td></tr>
+      <tr><td><code>&lt;br&gt;</code></td><td>–</td><td>Line break.</td></tr>
+      <tr><td><code>&lt;hr&gt;</code></td><td>–</td><td>Horizontal line.</td></tr>
+    </tbody>
+  </table>
+
+  <h2>HTML Structure & Layout</h2>
+  <table>
+    <thead><tr><th>Tag</th><th>Example</th><th>Description</th></tr></thead>
+    <tbody>
+      <tr><td><code>&lt;div&gt;</code></td><td><code>&lt;div&gt;Block&lt;/div&gt;</code></td><td>Block container.</td></tr>
+      <tr><td><code>&lt;span&gt;</code></td><td><code>&lt;span&gt;Inline&lt;/span&gt;</code></td><td>Inline container.</td></tr>
+      <tr><td><code>&lt;section&gt;</code></td><td><code>&lt;section&gt;Content&lt;/section&gt;</code></td><td>Semantic section of content.</td></tr>
+      <tr><td><code>&lt;header&gt;</code></td><td>–</td><td>Intro content or navigation.</td></tr>
+      <tr><td><code>&lt;footer&gt;</code></td><td>–</td><td>Footer of page or section.</td></tr>
+      <tr><td><code>&lt;nav&gt;</code></td><td>–</td><td>Navigation links.</td></tr>
+    </tbody>
+  </table>
+
+  <h2>HTML Forms & Inputs</h2>
+  <table>
+    <thead><tr><th>Tag</th><th>Example</th><th>Description</th></tr></thead>
+    <tbody>
+      <tr><td><code>&lt;form&gt;</code></td><td><code>&lt;form action="" method="post"&gt;</code></td><td>Form container.</td></tr>
+      <tr><td><code>&lt;input&gt;</code></td><td><code>&lt;input type="text"&gt;</code></td><td>Single-line input field.</td></tr>
+      <tr><td><code>&lt;textarea&gt;</code></td><td><code>&lt;textarea&gt;</code></td><td>Multiline text field.</td></tr>
+      <tr><td><code>&lt;button&gt;</code></td><td><code>&lt;button&gt;Click&lt;/button&gt;</code></td><td>Clickable button.</td></tr>
+      <tr><td><code>&lt;label&gt;</code></td><td><code>&lt;label for="id"&gt;</code></td><td>Label for input. <span class="reminder">Use for accessibility!</span></td></tr>
+    </tbody>
+  </table>
+
+  <h2>CSS Selectors & Syntax</h2>
+  <table>
+    <thead><tr><th>Selector</th><th>Example</th><th>Description</th></tr></thead>
+    <tbody>
+      <tr><td><code>element</code></td><td><code>p {}</code></td><td>Selects all paragraphs.</td></tr>
+      <tr><td><code>.class</code></td><td><code>.note {}</code></td><td>Selects elements with class.</td></tr>
+      <tr><td><code>#id</code></td><td><code>#header {}</code></td><td>Selects unique ID.</td></tr>
+      <tr><td><code>*</code></td><td><code>* {}</code></td><td>Universal selector.</td></tr>
+      <tr><td><code>element1 element2</code></td><td><code>div p {}</code></td><td>Selects nested elements.</td></tr>
+    </tbody>
+  </table>
+
+  <h2>CSS Properties</h2>
+  <table>
+    <thead><tr><th>Property</th><th>Example</th><th>Description</th></tr></thead>
+    <tbody>
+      <tr><td><code>color</code></td><td><code>color: red;</code></td><td>Text color.</td></tr>
+      <tr><td><code>background</code></td><td><code>background-color: #f0f0f0;</code></td><td>Background color.</td></tr>
+      <tr><td><code>margin</code></td><td><code>margin: 10px;</code></td><td>Space outside.</td></tr>
+      <tr><td><code>padding</code></td><td><code>padding: 20px;</code></td><td>Space inside.</td></tr>
+      <tr><td><code>border</code></td><td><code>border: 1px solid black;</code></td><td>Element border.</td></tr>
+      <tr><td><code>font-family</code></td><td><code>font-family: Arial, sans-serif;</code></td><td>Font styling.</td></tr>
+    </tbody>
+  </table>
+
+  <h2>CSS Box Model</h2>
+  <table>
+    <thead><tr><th>Area</th><th>What It Is</th><th>Description</th></tr></thead>
+    <tbody>
+      <tr><td>Content</td><td>Text or image inside</td><td>Main area of the element.</td></tr>
+      <tr><td>Padding</td><td>Space inside border</td><td>Pushes content inward.</td></tr>
+      <tr><td>Border</td><td>Line around padding</td><td>Visible box edge.</td></tr>
+      <tr><td>Margin</td><td>Space outside border</td><td>Pushes other elements away.</td></tr>
+    </tbody>
+  </table>
+
+  <h2>Advanced CSS</h2>
+  <table>
+    <thead><tr><th>Concept</th><th>Example</th><th>Description</th></tr></thead>
+    <tbody>
+      <tr><td>Flexbox</td><td><code>display: flex;</code></td><td>1D layout system.</td></tr>
+      <tr><td>Grid</td><td><code>display: grid;</code></td><td>2D layout system.</td></tr>
+      <tr><td>Media Query</td><td><code>@media (max-width: 600px)</code></td><td>Responsive styles.</td></tr>
+      <tr><td>Pseudo-class</td><td><code>:hover</code></td><td>Style on interaction.</td></tr>
+      <tr><td>Positioning</td><td><code>position: relative;</code></td><td>Change layout flow. <span class="reminder">z-index only works here!</span></td></tr>
+    </tbody>
+  </table>
+
+</body>
+</html>
