@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>P. aequor DNA Simulator</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <h1>Pila aequor DNA Simulator</h1>
+
+  <button id="generateBtn">Generate 30 Surviving Organisms</button>
+
+  <section id="organismsSection">
+    <h2>Organisms</h2>
+    <ul id="organismList"></ul>
+  </section>
+
+  <section id="actionsSection" style="display:none;">
+    <h2>Actions</h2>
+
+    <div>
+      <label for="mutateSelect">Select organism to mutate:</label>
+      <select id="mutateSelect"></select>
+      <button id="mutateBtn">Mutate DNA</button>
+    </div>
+
+    <div>
+      <label for="compareSelect1">Compare organism 1:</label>
+      <select id="compareSelect1"></select>
+
+      <label for="compareSelect2">with organism 2:</label>
+      <select id="compareSelect2"></select>
+
+      <button id="compareBtn">Compare DNA</button>
+    </div>
+
+    <div id="compareResult"></div>
+  </section>
+
+  <script src="script.js"></script>
+</body>
+</html>
