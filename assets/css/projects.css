@@ -20,7 +20,6 @@
   width: 10px;
   height: 10px;
   border-radius: 50%;
-  background: rgba(255,255,255,.22);
 }
 
 .browser-dots span:nth-child(1) {
@@ -58,7 +57,6 @@
   width: 100%;
   height: auto;
   display: block;
-  
 }
 
 .project-content {
@@ -100,6 +98,7 @@
   background: rgba(59, 130, 246, 0.12);
   border: 1px solid rgba(59, 130, 246, 0.28);
 }
+
 .project-content h3 {
   margin: 14px 0;
   font-size: 1.75rem;
@@ -129,6 +128,23 @@
   font-weight: 700;
 }
 
+.project-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 24px;
+}
+
+.project-meta span {
+  padding: 8px 12px;
+  border-radius: 999px;
+  background: rgba(56,189,248,.08);
+  border: 1px solid rgba(56,189,248,.18);
+  color: var(--text);
+  font-size: .85rem;
+  font-weight: 700;
+}
+
 .project-buttons {
   display: flex;
   gap: 14px;
@@ -152,21 +168,7 @@
   justify-content: center;
 }
 
-@media (max-width: 900px) {
-  .project-list {
-    grid-template-columns: 1fr;
-  }
-
-  .project-card:first-child {
-    grid-template-columns: 1fr;
-  }
-
-  .project-card:first-child .project-image {
-    height: 260px;
-    min-height: 0;
-  }
-
-  /* PRACTICE PROJECTS */
+/* PRACTICE PROJECTS */
 
 .practice-projects {
   padding-top: 40px;
@@ -179,7 +181,7 @@
 }
 
 .practice-card {
-  padding: 26px;
+  padding: 28px;
   border-radius: 22px;
   background:
     linear-gradient(180deg, rgba(255,255,255,.035), transparent),
@@ -191,29 +193,52 @@
 .practice-card:hover {
   transform: translateY(-6px);
   border-color: rgba(56,189,248,.45);
+  box-shadow:
+    0 24px 60px rgba(0,0,0,.25),
+    0 0 24px rgba(56,189,248,.12);
 }
 
 .practice-card h3 {
-  font-size: 1.25rem;
-  margin-bottom: 10px;
+  font-size: 1.3rem;
+  margin-bottom: 12px;
 }
 
 .practice-card p {
   color: var(--muted);
-  margin: 16px 0 22px;
+  margin: 18px 0 22px;
   font-weight: 700;
 }
 
 .practice-links {
   display: flex;
-  gap: 14px;
+  gap: 12px;
   flex-wrap: wrap;
 }
 
 .practice-links a {
-  color: var(--accent);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 40px;
+  padding: 0 16px;
+  border-radius: 10px;
+  font-size: 0.88rem;
   font-weight: 800;
-  font-size: 0.92rem;
+  color: var(--text);
+  background: rgba(255,255,255,.055);
+  border: 1px solid rgba(255,255,255,.1);
+  transition: .25s ease;
+}
+
+.practice-links a:first-child {
+  background: var(--accent);
+  color: #06111d;
+  border-color: var(--accent);
+}
+
+.practice-links a:hover {
+  transform: translateY(-2px);
+  border-color: rgba(56,189,248,.55);
 }
 
 .github-cta {
@@ -240,24 +265,20 @@
 }
 
 @media (max-width: 900px) {
+  .project-list {
+    grid-template-columns: 1fr;
+  }
+
+  .project-card:first-child {
+    grid-template-columns: 1fr;
+  }
+
+  .project-card:first-child .project-image {
+    height: auto;
+    min-height: 0;
+  }
+
   .practice-grid {
     grid-template-columns: 1fr;
   }
-}
-.project-meta {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 12px;
-  margin-bottom: 24px;
-}
-
-.project-meta span {
-  padding: 8px 12px;
-  border-radius: 999px;
-  background: rgba(56,189,248,.08);
-  border: 1px solid rgba(56,189,248,.18);
-  color: var(--text);
-  font-size: .85rem;
-  font-weight: 700;
-}
 }
