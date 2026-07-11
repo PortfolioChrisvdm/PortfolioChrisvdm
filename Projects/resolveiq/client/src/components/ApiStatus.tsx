@@ -1,5 +1,6 @@
 import { CircleCheck, CircleX } from "lucide-react";
 import { useEffect, useState } from "react";
+import { Card } from "./ui/Card";
 
 interface HealthResponse {
   status: string;
@@ -42,58 +43,69 @@ export const ApiStatus = () => {
 
   if (!health && !error) {
     return (
-      <article className="status-panel" aria-live="polite">
+      <Card className="status-panel" aria-live="polite">
         <p>Checking API status…</p>
-      </article>
+      </Card>
     );
   }
 
-  if (error) {
+    if (error) {
     return (
-      <article className="status-panel status-panel--error" aria-live="polite">
-        <CircleX aria-hidden="true" />
-        <div>
-          <h2>API unavailable</h2>
-          <p>{error}</p>
+      <Card
+        className="status-panel status-panel--error"
+        aria-live="polite"
+      >
+        <div className="status-panel__layout">
+          <CircleX aria-hidden="true" />
+
+          <div>
+            <h2>API unavailable</h2>
+            <p>{error}</p>
+          </div>
         </div>
-      </article>
+      </Card>
     );
   }
 
-    if (!health) {
+     if (!health) {
     return null;
   }
 
   return (
-    <article className="status-panel status-panel--success" aria-live="polite">
-      <CircleCheck aria-hidden="true" />
+    <Card
+      className="status-panel status-panel--success"
+      aria-live="polite"
+    >
+      <div className="status-panel__layout">
+        <CircleCheck aria-hidden="true" />
 
-      <div>
-        <h2>API online</h2>
-        <p>The ResolveIQ backend is responding normally.</p>
+        <div>
+          <h2>API online</h2>
+          <p>The ResolveIQ backend is responding normally.</p>
 
-        <dl className="status-details">
-          <div>
-            <dt>Service</dt>
-            <dd>{health.service}</dd>
-          </div>
+          <dl className="status-details">
+            <div>
+              <dt>Service</dt>
+              <dd>{health.service}</dd>
+            </div>
 
-          <div>
-            <dt>Version</dt>
-            <dd>{health.version}</dd>
-          </div>
+            <div>
+              <dt>Version</dt>
+              <dd>{health.version}</dd>
+            </div>
 
-          <div>
-            <dt>Status</dt>
-            <dd>{health.status}</dd>
-          </div>
+            <div>
+              <dt>Status</dt>
+              <dd>{health.status}</dd>
+            </div>
 
-          <div>
-            <dt>Last response</dt>
-            <dd>{new Date(health.timestamp).toLocaleString()}</dd>
-          </div>
-        </dl>
+            <div>
+              <dt>Last response</dt>
+              <dd>{new Date(health.timestamp).toLocaleString()}</dd>
+            </div>
+          </dl>
+        </div>
       </div>
-    </article>
+    </Card>
   );
 };

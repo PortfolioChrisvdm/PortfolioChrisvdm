@@ -1,0 +1,27 @@
+.card {
+  padding: 1.5rem;
+  border: 1px solid var(--colour-border);
+  border-radius: 0.875rem;
+  background: var(--colour-surface);
+}
+
+.card__header {
+  margin-bottom: 1.25rem;
+}
+
+.card__title {
+  margin: 0;
+  color: var(--colour-text);
+  font-size: 1.25rem;
+  line-height: 1.4;
+}
+
+.card__description {
+  margin: 0.4rem 0 0;
+  color: var(--colour-text-secondary);
+  line-height: 1.6;
+}
+
+.card__content {
+  min-width: 0;
+}
