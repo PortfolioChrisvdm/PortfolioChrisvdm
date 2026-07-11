@@ -182,6 +182,11 @@
 }
 
 .status-panel__layout > svg {
+  flex-shrink: 0;
+  width: 1.5rem;
+  height: 1.5rem;
+  margin-top: 0.2rem;
+}
 
 .status-panel h2 {
   margin: 0;
@@ -196,14 +201,17 @@
   border-color: var(--colour-success-border);
 }
 
-.status-panel--success .status-panel__layout > svg
+.status-panel--success .status-panel__layout > svg {
+  color: var(--colour-success-text);
+}
 
 .status-panel--error {
   border-color: var(--colour-danger-border);
 }
 
-.status-panel--error .status-panel__layout > svg
-
+.status-panel--error .status-panel__layout > svg {
+  color: var(--colour-danger-text);
+}
 .status-details {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));

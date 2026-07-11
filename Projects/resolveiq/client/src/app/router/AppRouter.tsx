@@ -1,5 +1,6 @@
 import { Navigate, Route, Routes } from "react-router-dom";
 
+import { LoginPage } from "../../features/authentication/pages/LoginPage";
 import { AppShell } from "../layouts/AppShell";
 import { DashboardPage } from "../../pages/DashboardPage";
 import { PlaceholderPage } from "../../pages/PlaceholderPage";
@@ -7,6 +8,8 @@ import { PlaceholderPage } from "../../pages/PlaceholderPage";
 export const AppRouter = () => {
   return (
     <Routes>
+        <Route path="/login" element={<LoginPage />} />
+      
       <Route element={<AppShell />}>
         <Route index element={<Navigate to="/dashboard" replace />} />
 

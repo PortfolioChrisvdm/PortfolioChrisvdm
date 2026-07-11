@@ -6,6 +6,16 @@ const environmentSchema = z.object({
     .default("development"),
 
   PORT: z.coerce.number().int().positive().default(3000),
+
+  DEV_LOGIN_EMAIL: z
+    .string()
+    .email()
+    .default("admin@resolveiq.local"),
+
+  DEV_LOGIN_PASSWORD: z
+    .string()
+    .min(8)
+    .default("ResolveIQ2026!"),
 });
 
 const parsedEnvironment = environmentSchema.safeParse(process.env);
